@@ -16,3 +16,6 @@ This repo contains 3 tests:
 5. Fill IFTTT trigger URL and key
 6. Setup crontab on your server
 7. Done!
+
+### If my server is totally down?
+So I host the client script on another server.
