@@ -1,0 +1,11 @@
+{
+    "Test1URL" : "https://your_domain.com/1_web_host.html",
+    "Test2URL" : "https://your_domain.com/2_php_test.php",
+    "Test3URL" : "https://your_domain.com/3_website_status/",
+    "RunTest1" : true,
+    "RunTest2" : true,
+    "RunTest3" : true,
+    "ifttt_key" : "YOUR_KEY",
+    "ifttt_trigger" : "website_status",
+    "nofity_only_when_failed" : true
+}
