@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import os
 import requests
 import json
 
@@ -22,7 +23,7 @@ class RunTest():
         Status.Text += "Test1 - Web Host: "
         if config["RunTest1"] == True:
             r = requests.get(config["Test1URL"])
-            if r.text.find("<p>Test1: OK</p>") == 89:
+            if r.text.find("<p>Test1: OK</p>") > 0:
                 Status.Test1OK = True
                 Status.Text += "Success\n"
             else:
@@ -35,7 +36,7 @@ class RunTest():
         Status.Text += "Test2 - Simple PHP: "
         if config["RunTest2"] == True:
             r = requests.get(config["Test2URL"])
-            if r.text.find("<p>Test2: OK</p>") == 89:
+            if r.text.find("<p>Test2: OK</p>") > 0:
                 Status.Test2OK = True
                 Status.Text += "Success\n"
             else:
@@ -64,12 +65,15 @@ class RunTest():
         r = requests.post(url=url, data=body)
 
 if __name__ == '__main__':
-    config = RunTest.get_config("config.json")
+    config = RunTest.get_config(os.path.dirname(os.path.abspath(__file__)) + "/config.json")
     RunTest.run_test_1(config)
     RunTest.run_test_2(config)
     RunTest.run_test_3(config)
 
     print("Website status check done.")
+    print("Test 1 " + str(Status.Test1OK))
+    print("Test 2 " + str(Status.Test2OK))
+    print("Test 3 " + str(Status.Test3OK))
 
     if Status.Test1OK == True and Status.Test2OK == True and Status.Test3OK == True:
         if config["nofity_only_when_failed"] == False:
